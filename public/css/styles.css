@@ -1,0 +1,21 @@
+html {
+  background-color: black;
+  background-image: -webkit-linear-gradient(85deg, #000000 60%, #c82121 60% 70%, #0d0cb5 70% 100%);
+  min-height: 1000px;
+  font-family: 'helvetica neue';
+}
+
+footer {
+  color: #dee1ec;
+  font-family: 'Roboto', sans-serif;
+}
+
+.navbar {
+  color: #dee1ec;
+  font-family: 'Roboto', sans-serif;
+}
+
+.search-form {
+  margin: 24px 0;
+  background: white;
+}

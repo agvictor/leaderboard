@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<%- include('header') -%>
+
+<body>
+  <div class="banner">
+    <div class="w3-bar navbar">
+      <h1 class="w3-bar-item w3-padding-large navbar-logo w3-xlarge" href="#"><strong>Sim Rivals</strong></h1>
+      <div class="navbar-list">
+        <a href="#section-education" class="w3-bar-item w3-padding-large navbar-item w3-hide-medium w3-hide-small">education</a>
+        <a href="#section-work" class="w3-bar-item w3-padding-large navbar-item w3-hide-medium w3-hide-small">work</a>
+        <a href="#section-skills" class="w3-bar-item w3-padding-large navbar-item w3-hide-medium w3-hide-small">skills</a>
+        <a href="#" class="w3-bar-item w3-padding-large navbar-item w3-hide-medium w3-hide-small">projects</a>
+        <a href="#section-hobbies" class="w3-bar-item w3-padding-large navbar-item w3-hide-medium w3-hide-small">hobbies</a>
+        <a href="#section-contact" class="w3-bar-item w3-padding-large navbar-item w3-hide-medium w3-hide-small">contact</a>
+        <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-xxlarge w3-padding-16" onclick="myFunction()">&#9776;</a>
+      </div>
+    </div>
+
+    <div id="expanded-list" class="w3-bar-block w3-black w3-hide w3-hide-large">
+      <a href="#section-education" class="w3-bar-item w3-button w3-center">education</a>
+      <a href="#section-work" class="w3-bar-item w3-button w3-center">work</a>
+      <a href="#section-skills" class="w3-bar-item w3-button w3-center">skills</a>
+      <a href="#" class="w3-bar-item w3-button w3-center">projects</a>
+      <a href="#section-hobbies" class="w3-bar-item w3-button w3-center">hobbies</a>
+      <a href="#section-contact" class="w3-bar-item w3-button w3-center">contact</a>
+    </div>
+  </div>
+
+
+
+  <div class="w3-container">
+    <div class="w3-card-4 w3-round-large search-form">
+      <h2 class="w3-padding"><strong>Search Leaderboard</strong></h2>
+      <form class="w3-container" action="index.html" method="post">
+        <input id="myInput" type="text" name="driverName" placeholder="Driver Name"
+        onkeyup="myFunction()" class="w3-input w3-large w3-animate-input w3-padding" style="width:65%">
+        <!-- <button type="submit" name="search" class="w3-margin w3-large w3-round-large w3-red w3-hover-indigo">Search</button> -->
+      </form>
+    </div>
+
+    <div class="w3-responsive w3-round-large">
+      <table id="myTable" class="w3-table-all w3-large w3-card-4">
+        <thead>
+          <th>Driver Name <button class="w3-small" type="button" name="button">&#8597;</button></th>
+          <th>Track</th>
+          <th>Configuration</th>
+          <th>Car</th>
+          <th>Lap Time <button class="w3-small" type="button" name="button">&#8597;</button></th>
+        </thead>
+        <% for (var entry of timings) { %>
+        <tr>
+          <td><%=entry.driverName%></td>
+          <td><%=entry.trackName%></td>
+          <td><%=entry.trackConfig%></td>
+          <td><%=entry.car%></td>
+          <td><%=entry.lapTime%></td>
+        </tr>
+        <% } %>
+      </table>
+
+    </div>
+  </div>
+
+
+  <script>
+  function myFunction() {
+    var input, filter, table, tr, td, i;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("myTable");
+    tr = table.getElementsByTagName("tr");
+    for (i = 0; i < tr.length; i++) {
+      td = tr[i].getElementsByTagName("td")[0];
+      if (td) {
+        txtValue = td.textContent || td.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+          tr[i].style.display = "";
+        } else {
+          tr[i].style.display = "none";
+        }
+      }
+    }
+  }
+  </script>
+
+</body>
+<%- include('footer') -%>
+
+</html>
