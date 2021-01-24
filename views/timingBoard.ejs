@@ -30,11 +30,28 @@
 
 
   <div class="w3-container">
-    <div class="w3-card-4 w3-round-large search-form">
+    <div class="w3-card-4 w3-round-large search-form w3-display-container">
       <h2 class="w3-padding"><strong>Search Leaderboard</strong></h2>
-      <form class="w3-container" action="index.html" method="post">
-        <input id="myInput" type="text" name="driverName" placeholder="Driver Name"
-        onkeyup="myFunction()" class="w3-input w3-large w3-animate-input w3-padding" style="width:65%">
+
+      <div class="w3-dropdown-hover w3-margin w3-card-4" style="width:45%">
+        <button class="w3-button w3-bar">Select Car</button>
+        <div class="w3-dropdown-content w3-bar-block w3-card-4">
+          <a href="#" class="w3-bar-item w3-button">iR-01</a>
+          <a href="#" class="w3-bar-item w3-button">Formula 3</a>
+          <a href="#" class="w3-bar-item w3-button">Formula Renault 2.0</a>
+        </div>
+      </div>
+      <div class="w3-dropdown-hover w3-card-4"  style="width:45%">
+        <button class="w3-button w3-bar">Select Track</button>
+        <div class="w3-dropdown-content w3-bar-block w3-card-4">
+          <a href="#" class="w3-bar-item w3-button">Imola</a>
+          <a href="#" class="w3-bar-item w3-button">Watkins Glen</a>
+          <a href="#" class="w3-bar-item w3-button">Leguna Seca</a>
+        </div>
+      </div>
+
+      <form class="w3-container w3-padding" action="/" method="post">
+        <input id="myInput" type="text" name="driverName" placeholder="Driver Name" onkeyup="myFunction()" class="w3-input w3-large w3-animate-input w3-padding" style="width:65%">
         <!-- <button type="submit" name="search" class="w3-margin w3-large w3-round-large w3-red w3-hover-indigo">Search</button> -->
       </form>
     </div>
@@ -64,24 +81,24 @@
 
 
   <script>
-  function myFunction() {
-    var input, filter, table, tr, td, i;
-    input = document.getElementById("myInput");
-    filter = input.value.toUpperCase();
-    table = document.getElementById("myTable");
-    tr = table.getElementsByTagName("tr");
-    for (i = 0; i < tr.length; i++) {
-      td = tr[i].getElementsByTagName("td")[0];
-      if (td) {
-        txtValue = td.textContent || td.innerText;
-        if (txtValue.toUpperCase().indexOf(filter) > -1) {
-          tr[i].style.display = "";
-        } else {
-          tr[i].style.display = "none";
+    function myFunction() {
+      var input, filter, table, tr, td, i;
+      input = document.getElementById("myInput");
+      filter = input.value.toUpperCase();
+      table = document.getElementById("myTable");
+      tr = table.getElementsByTagName("tr");
+      for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[0];
+        if (td) {
+          txtValue = td.textContent || td.innerText;
+          if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+          } else {
+            tr[i].style.display = "none";
+          }
         }
       }
     }
-  }
   </script>
 
 </body>
