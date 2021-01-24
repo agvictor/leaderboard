@@ -29,25 +29,28 @@
 
 
 
-  <div class="w3-container">
+  <div class="w3-container w3-mobile">
     <div class="w3-card-4 w3-round-large search-form w3-display-container">
       <h2 class="w3-padding"><strong>Search Leaderboard</strong></h2>
 
-      <div class="w3-dropdown-hover w3-margin w3-card-4" style="width:45%">
-        <button class="w3-button w3-bar">Select Car</button>
-        <div class="w3-dropdown-content w3-bar-block w3-card-4">
-          <a href="#" class="w3-bar-item w3-button">iR-01</a>
-          <a href="#" class="w3-bar-item w3-button">Formula 3</a>
-          <a href="#" class="w3-bar-item w3-button">Formula Renault 2.0</a>
-        </div>
+      <div class="w3-dropdown-hover w3-margin-bottom w3-half">
+        <select class="w3-bar w3-select" name="trackDropdown" id="trackDropdown" onchange="trackSelection()">
+          <option value="" disabled selected>Select a track</option>
+          <option value="all">All</option>
+          <option value="imola">Imola</option>
+          <option value="watkins glen">Watkins Glen</option>
+          <option value="leguna seca">Leguna Seca</option>
+          <option value="monza">Monza</option>
+        </select>
       </div>
-      <div class="w3-dropdown-hover w3-card-4"  style="width:45%">
-        <button class="w3-button w3-bar">Select Track</button>
-        <div class="w3-dropdown-content w3-bar-block w3-card-4">
-          <a href="#" class="w3-bar-item w3-button">Imola</a>
-          <a href="#" class="w3-bar-item w3-button">Watkins Glen</a>
-          <a href="#" class="w3-bar-item w3-button">Leguna Seca</a>
-        </div>
+      <div class="w3-dropdown-hover w3-margin-bottom w3-half">
+        <select class="w3-bar w3-select" name="carDropdown" id="carDropdown">
+          <option value="" disabled selected>Select car type</option>
+          <option value="volvo">Volvo</option>
+          <option value="saab">Saab</option>
+          <option value="opel">Opel</option>
+          <option value="audi">Audi</option>
+        </select>
       </div>
 
       <form class="w3-container w3-padding" action="/" method="post">
@@ -89,6 +92,25 @@
       tr = table.getElementsByTagName("tr");
       for (i = 0; i < tr.length; i++) {
         td = tr[i].getElementsByTagName("td")[0];
+        if (td) {
+          txtValue = td.textContent || td.innerText;
+          if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+          } else {
+            tr[i].style.display = "none";
+          }
+        }
+      }
+    }
+
+    function trackSelection() {
+      var input, table, filter;
+      input = document.getElementById("trackDropdown");
+      filter = input.value.toUpperCase();
+      table = document.getElementById("myTable");
+      tr = table.getElementsByTagName("tr");
+      for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[1];
         if (td) {
           txtValue = td.textContent || td.innerText;
           if (txtValue.toUpperCase().indexOf(filter) > -1) {
